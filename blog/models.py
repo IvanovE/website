@@ -28,6 +28,7 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=100)
     image = models.CharField(max_length=50, null=True)
     date = models.DateField(auto_now=True)
+    time = models.TimeField(auto_now=True, null=True)
     slug = models.SlugField(unique=True)
     content = models.TextField(validators=[MinLengthValidator(10)])
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name="posts")

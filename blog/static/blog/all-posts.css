@@ -10,7 +10,7 @@ body {
 #all-posts {
   margin: 7rem auto;
   width: 90%;
-  max-width: 60rem;
+  max-width: 100%;
 }
 
 #all-posts h2 {

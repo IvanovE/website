@@ -5,14 +5,14 @@ from .models import Post
 
 
 def starting_page(request):
-    latest_post = Post.objects.all().order_by("-date")[:3]
+    latest_post = Post.objects.all().order_by("-time")[:3]
     return render(request, 'blog/index.html', {
         'posts': latest_post
     })
 
 
 def posts(request):
-    all_posts = Post.objects.all().order_by('-date')
+    all_posts = Post.objects.all().order_by('-time')
     return render(request, 'blog/all-posts.html', {
         'posts': all_posts
     })
