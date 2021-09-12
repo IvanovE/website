@@ -1,8 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
 
-# Create your models here.
-
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
@@ -26,7 +24,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=20)
     excerpt = models.CharField(max_length=100)
-    image = models.CharField(max_length=50, null=True)
+    image = models.ImageField(upload_to='posts', null=True)
     date = models.DateField(auto_now=True)
     time = models.TimeField(auto_now=True, null=True)
     slug = models.SlugField(unique=True)
@@ -35,4 +33,16 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
-        return f'{self.title}, {self.author}, {self.date}, {self.tags}'
+        return f'{self.title}, {self.author}, {self.date}'
+
+
+class Comment(models.Model):
+    user_name = models.CharField(max_length=50)
+    user_email = models.EmailField()
+    user_text = models.TextField(max_length=500)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    date = models.DateField(auto_now=True, null=True)
+    time = models.TimeField(auto_now=True, null=True)
+
+    def __str__(self):
+        return f'Name: {self.user_name}, Email: {self.user_email}, Comment: {self.user_text}'
