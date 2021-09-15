@@ -68,19 +68,21 @@
     </section>
 {% endif %}
 
-<section id="comment-form">
-    <h2>Your comment</h2>
-    <form action="{% url 'post-detail-page' post.slug %}" method="POST">
-        {% csrf_token %}
-        {% for form_field in comment_form %}
-            <div class="form-control {% if form_field.errors %}invalid{% endif %}">
-                {{ form_field.label_tag }}
-                {{ form_field }}
-                {{ form_field.errors }}
-            </div>
-        {% endfor %}
-        <button>Save Comment</button>
-    </form>
-</section>
+{% if request.user.is_authenticated%}
+    <section id="comment-form">
+        <h2>Your comment</h2>
+        <form action="{% url 'post-detail-page' post.slug %}" method="POST">
+            {% csrf_token %}
+            {% for form_field in comment_form %}
+                <div class="form-control {% if form_field.errors %}invalid{% endif %}">
+                    {{ form_field.label_tag }}
+                    {{ form_field }}
+                    {{ form_field.errors }}
+                </div>
+            {% endfor %}
+            <button>Save Comment</button>
+        </form>
+    </section>
+{% endif %}
 
 {% endblock %}
