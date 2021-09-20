@@ -15,8 +15,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class CommentForm(admin.ModelAdmin):
-    list_display = ["user_name", "post", "user_email", "date", ]
-    list_filter = ["user_name", "user_email", ]
+    list_display = ["user", "post", "date", ]
+    list_filter = ["user", ]
 
 
 admin.site.register(Author, AuthorAdmin)

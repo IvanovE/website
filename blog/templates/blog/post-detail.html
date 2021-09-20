@@ -26,6 +26,7 @@
         {% endfor %}
     </div>
 
+{% if request.user.is_authenticated%}
     <div id="read-later">
         <form action="{% url 'read-later-page' %}" method="POST">
             {% csrf_token %}
@@ -39,6 +40,7 @@
             </button>
         </form>
     </div>
+{% endif %}
 
     <article>
         <img src="{{ post.image.url }}">
@@ -59,7 +61,7 @@
         <ul>
             {% for comment in all_comments %}
                 <li>
-                    <h2>{{ comment.user_name }}</h2>
+                    <h2>{{ comment.user }}</h2>
                     <p>{{ comment.user_text|linebreaks }}</p>
                     <p>{{ comment.date }}, {{ comment.time }}</p>
                 </li>
@@ -68,11 +70,11 @@
     </section>
 {% endif %}
 
-{% if request.user.is_authenticated%}
+{% if request.user.is_authenticated %}
     <section id="comment-form">
-        <h2>Your comment</h2>
         <form action="{% url 'post-detail-page' post.slug %}" method="POST">
             {% csrf_token %}
+
             {% for form_field in comment_form %}
                 <div class="form-control {% if form_field.errors %}invalid{% endif %}">
                     {{ form_field.label_tag }}

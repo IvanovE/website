@@ -57,6 +57,7 @@ class PostDetailView(View):
         post = Post.objects.get(slug=slug)
 
         if comment_form.is_valid():
+            comment_form.instance.user = request.user
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
@@ -66,6 +67,7 @@ class PostDetailView(View):
             'post': post,
             'post_tags': post.tags.all(),
             'comment_form': comment_form,
+            'user_name': request.user.username,
             'all_comments': post.comments.all().order_by('-time'),
             'saved_for_later': self.is_stored_post(request, post.id)
         }
@@ -102,7 +104,7 @@ class ReadLaterView(View):
             read_later_post_list.remove(post_id)
         request.session['read_later_post_list'] = read_later_post_list
 
-        return HttpResponseRedirect('/')
+        return redirect('read-later-page')
 
 
 def loginPage(request):
