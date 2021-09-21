@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    All Posts
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'blog/all-posts.css' %}">
+{% endblock %}
+
+{% block content%}
+
+    <section id="all-posts">
+        <h2>All posts with this tag</h2>
+        {% if posts %}
+            <ul>
+                {% for post in posts %}
+                    {% include 'blog/includes/post.html' %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>There are no posts with this tag, but this is only for now.</p>
+        {% endif %}
+    </section>
+
+{% endblock %}

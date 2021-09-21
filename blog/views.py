@@ -6,7 +6,7 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-from .models import Post, UserSeenPosts
+from .models import Post, UserSeenPosts, Tag
 from .forms import CommentForm, CreateUserForm
 
 
@@ -115,6 +115,23 @@ class ReadLaterView(View):
         request.session['read_later_post_list'] = read_later_post_list
 
         return redirect('read-later-page')
+
+
+class CategoriesView(ListView):
+    template_name = 'blog/categories.html'
+    model = Tag
+    context_object_name = 'tags'
+
+
+class CategoryView(View):
+    def get(self, request, slug):
+        posts = Post.objects.filter(tags__slug=slug)
+
+        context = {
+            'posts': posts
+        }
+
+        return render(request, 'blog/category.html', context)
 
 
 def loginPage(request):

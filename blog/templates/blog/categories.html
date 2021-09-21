@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'blog/categories.css' %}">
+{% endblock %}
+
+{% block title %}
+  Categories
+{% endblock %}
+
+{% block content %}
+  <section id="stored-posts">
+    <h2>All categories</h2>
+    <ul>
+      {% for tag in tags %}
+        <li>
+          <a href="{% url 'category-page' tag.slug %}">
+            {{ tag.caption }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}

@@ -17,6 +17,7 @@ class Author(models.Model):
 
 class Tag(models.Model):
     caption = models.CharField(max_length=10)
+    slug = models.SlugField(unique=True, null=True)
 
     def __str__(self):
         return self.caption
