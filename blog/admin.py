@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Tag, Post, Comment
+from .models import Author, Tag, Post, Comment, UserSeenPosts
 
 # Register your models here.
 
@@ -19,7 +19,13 @@ class CommentForm(admin.ModelAdmin):
     list_filter = ["user", ]
 
 
+class UserSeenPostsAdmin(admin.ModelAdmin):
+    list_display = ["user", "post", ]
+    list_filter = ["user", "post", ]
+
+
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Tag)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentForm)
+admin.site.register(UserSeenPosts, UserSeenPostsAdmin)

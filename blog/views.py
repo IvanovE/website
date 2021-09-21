@@ -6,14 +6,14 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-from .models import Post
+from .models import Post, UserSeenPosts
 from .forms import CommentForm, CreateUserForm
 
 
 class StartingPageView(ListView):
     template_name = 'blog/index.html'
     model = Post
-    ordering = ['-time']
+    ordering = ['-views']
     context_object_name = 'posts'
 
     def get_queryset(self):
@@ -41,6 +41,16 @@ class PostDetailView(View):
 
     def get(self, request, slug):
         post = Post.objects.get(slug=slug)
+
+        try:
+            if UserSeenPosts.objects.filter(post=post, user=request.user).exists():
+                pass
+            else:
+                post.views += 1
+                post.save()
+                UserSeenPosts.objects.create(user=request.user, post=post)
+        except:
+            pass
 
         context = {
             'post': post,

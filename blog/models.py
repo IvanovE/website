@@ -24,6 +24,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=20)
+    views = models.IntegerField(default=0)
     excerpt = models.CharField(max_length=100)
     image = models.ImageField(upload_to='posts', null=True)
     date = models.DateField(auto_now=True)
@@ -46,3 +47,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.user_text, self.user)
+
+
+class UserSeenPosts(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seen_posts')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user}, {self.post}'
