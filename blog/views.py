@@ -56,7 +56,7 @@ class PostDetailView(View):
             'post': post,
             'post_tags': post.tags.all(),
             'comment_form': CommentForm(),
-            'all_comments': post.comments.all().order_by('-time'),
+            'all_comments': post.comments.all().order_by('-date', '-time'),
             'saved_for_later': self.is_stored_post(request, post.id)
         }
 
