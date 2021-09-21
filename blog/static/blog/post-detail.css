@@ -44,11 +44,8 @@ body {
   margin-bottom: 1rem;
 }
 
-#summary address {
+#summary article address a {
   font-weight: bold;
-}
-
-#summary a {
   color: white;
   text-decoration: none;
 }
@@ -96,6 +93,11 @@ main {
     padding: 0.5rem 1rem;
     border-radius: 12px;
     margin-right: 1rem;
+}
+
+.tag a {
+    text-decoration: none;
+    text-weight: bold;
 }
 
 #comment-form {

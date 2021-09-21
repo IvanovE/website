@@ -22,7 +22,11 @@
     <h2>{{ post.title }}</h2>
     <div class="tags">
         {% for tag in post_tags %}
-            <div class="tag"> {{ tag }} </div>
+            <div class="tag">
+                <a href="{% url 'category-page' tag.slug %}">
+                    {{ tag }}
+                </a>
+            </div>
         {% endfor %}
     </div>
 

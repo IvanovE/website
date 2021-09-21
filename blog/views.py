@@ -126,9 +126,11 @@ class CategoriesView(ListView):
 class CategoryView(View):
     def get(self, request, slug):
         posts = Post.objects.filter(tags__slug=slug)
+        tag = Tag.objects.get(slug=slug)
 
         context = {
-            'posts': posts
+            'posts': posts,
+            'tag': tag
         }
 
         return render(request, 'blog/category.html', context)

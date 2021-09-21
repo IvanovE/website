@@ -12,7 +12,7 @@
 {% block content%}
 
     <section id="all-posts">
-        <h2>All posts with this tag</h2>
+        <h2>{{ tag.caption }} Posts</h2>
         {% if posts %}
             <ul>
                 {% for post in posts %}
