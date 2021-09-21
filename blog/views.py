@@ -41,6 +41,7 @@ class PostDetailView(View):
 
     def get(self, request, slug):
         post = Post.objects.get(slug=slug)
+        related_posts = Post.objects.filter(tags__in=post.tags.all()).exclude(slug=slug)[:3]
 
         try:
             if UserSeenPosts.objects.filter(post=post, user=request.user).exists():
@@ -55,6 +56,7 @@ class PostDetailView(View):
         context = {
             'post': post,
             'post_tags': post.tags.all(),
+            'related_posts': related_posts,
             'comment_form': CommentForm(),
             'all_comments': post.comments.all().order_by('-date', '-time'),
             'saved_for_later': self.is_stored_post(request, post.id)
@@ -65,6 +67,7 @@ class PostDetailView(View):
     def post(self, request, slug):
         comment_form = CommentForm(request.POST)
         post = Post.objects.get(slug=slug)
+        related_posts = Post.objects.filter(tags__in=post.tags.all())[:3]
 
         if comment_form.is_valid():
             comment_form.instance.user = request.user
@@ -76,6 +79,7 @@ class PostDetailView(View):
         context = {
             'post': post,
             'post_tags': post.tags.all(),
+            'related_posts': related_posts,
             'comment_form': comment_form,
             'user_name': request.user.username,
             'all_comments': post.comments.all().order_by('-time'),

@@ -91,4 +91,17 @@
     </section>
 {% endif %}
 
+{% if related_posts %}
+    <div>
+        <section id="latest-posts">
+            <h2>Similar posts!</h2>
+            <ul>
+                {% for post in related_posts %}
+                    {% include 'blog/includes/post.html' %}
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+{% endif %}
+
 {% endblock %}
