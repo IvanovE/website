@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap3 %}
 
 <html lang="en">
 <head>
@@ -15,6 +16,14 @@
     <header id="main-navigation">
         <h1><a href="{% url 'starting-page'%}">Evgeny's Blog</a></h1>
         <nav>
+            <form action="{% url 'search-results' %}" class="navbar-form" method="get">
+                <div class="input-group">
+                    <input id="search" name="q" type="text" class="form-control" placeholder="Searching...">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">{% bootstrap_icon 'search' %}</button>
+                    </span>
+                </div>
+            </form>
             {% if request.user.is_authenticated %}
                 <a href="{% url 'read-later-page'%}">Read Later Posts</a>
             {% endif %}

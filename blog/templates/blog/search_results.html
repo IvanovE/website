@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'blog/search-results.css' %}">
+{% endblock %}
+
+{% block content%}
+
+    <section id="all-posts">
+        <h2>All posts</h2>
+        {% if posts %}
+        <ul>
+            {% for post in posts %}
+                {% include 'blog/includes/post.html' %}
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>We haven't found anything...</p>
+        {% endif %}
+    </section>
+
+{% endblock %}

@@ -5,6 +5,7 @@ from django.views.generic import ListView
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.db.models import Q
 
 from .models import Post, UserSeenPosts, Tag
 from .forms import CommentForm, CreateUserForm
@@ -138,6 +139,21 @@ class CategoryView(View):
         }
 
         return render(request, 'blog/category.html', context)
+
+
+class SearchResultsView(View):
+    template_name = 'blog/search_results.html'
+    context = {}
+
+    def get(self, request):
+        query = request.GET.get('q')
+        if query is not None:
+            posts = Post.objects.filter(title__icontains=query)
+            context = {
+                'posts': posts
+            }
+
+        return render(request, 'blog/search_results.html', context)
 
 
 def loginPage(request):
