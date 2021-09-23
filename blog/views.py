@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.db.models import Q
+from django.contrib.auth.models import User
 
 from .models import Post, UserSeenPosts, Tag
 from .forms import CommentForm, CreateUserForm
@@ -182,7 +182,15 @@ def registerPage(request):
     else:
         form = CreateUserForm()
         if request.method == 'POST':
-            form = CreateUserForm(request.POST)
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            password1 = request.POST.get('password1')
+            password2 = request.POST.get('password2')
+            form = CreateUserForm({
+                'username': username,
+                'email': email,
+                'password1': password1,
+                'password2': password2})
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
