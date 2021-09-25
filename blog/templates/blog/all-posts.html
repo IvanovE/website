@@ -11,13 +11,14 @@
 
 {% block content%}
 
-    <section id="all-posts">
-        <h2>All posts</h2>
-        <ul id="ul-class">
+  <div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for post in posts %}
                 {% include 'blog/includes/post.html' %}
             {% endfor %}
-        </ul>
-    </section>
+        </div>
+    </div>
+  </div>
 
 {% endblock %}

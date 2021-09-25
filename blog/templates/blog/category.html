@@ -6,22 +6,24 @@
 {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static 'blog/all-posts.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/category.css' %}">
 {% endblock %}
 
 {% block content%}
 
-    <section id="all-posts">
-        <h2>{{ tag.caption }} Posts</h2>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h2 class="category-title">{{ tag.caption }} Posts</h2>
         {% if posts %}
-            <ul>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% for post in posts %}
                     {% include 'blog/includes/post.html' %}
                 {% endfor %}
-            </ul>
+                </div>
         {% else %}
             <p>There are no posts with this tag, but this is only for now.</p>
         {% endif %}
-    </section>
+    </div>
+</div>
 
 {% endblock %}

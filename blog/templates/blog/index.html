@@ -11,10 +11,10 @@
 
 {% block content%}
     <section id="welcome">
-        <header>
+        <div>
             <img src="{% static 'blog/images/avatar.jpeg' %}">
             <h2>EVGENY'S BLOG</h2>
-        </header>
+        </div>
         <p>Welcome to blog!</p>
     </section>
 
@@ -25,14 +25,6 @@
                 {% include 'blog/includes/post.html' %}
             {% endfor %}
         </ul>
-    </section>
-
-    <section id="about">
-        <h2>Lorem ipsum dolor sit.</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, aliquam, architecto blanditiis culpa
-            dolores earum et ex id iste laborum, maiores mollitia nam officia perspiciatis possimus quo totam
-            voluptas voluptates?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, incidunt?</p>
     </section>
 
 {% endblock %}
