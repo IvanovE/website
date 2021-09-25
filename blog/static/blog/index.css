@@ -3,12 +3,6 @@
   padding: 6rem 12%;
 }
 
-#welcome header {
-  display: flex;
-  align-items: flex-start;
-  margin: 3rem auto;
-}
-
 #welcome img {
   width: 10rem;
   height: 10rem;

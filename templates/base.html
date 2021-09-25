@@ -8,39 +8,62 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
     {% block css_files %}{% endblock %}
 </head>
-<body>
-    <header id="main-navigation">
-        <h1><a href="{% url 'starting-page'%}">Evgeny's Blog</a></h1>
-        <nav>
-            <form action="{% url 'search-results' %}" class="navbar-form" method="get">
-                <div class="input-group">
-                    <input id="search" name="q" type="text" class="form-control" placeholder="Searching...">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default">{% bootstrap_icon 'search' %}</button>
-                    </span>
-                </div>
-            </form>
+
+
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 gap">
+          <li><a href="{% url 'starting-page' %}" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="{% url 'posts-page' %}" class="nav-link px-2 text-white">All Posts</a></li>
+          <li><a href="{% url 'categories-page' %}" class="nav-link px-2 text-white">All categories</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a href="{% url 'read-later-page'%}" class="nav-link px-2 text-white">Read Later Posts</a></li>
+          {% endif %}
+        </ul>
+
+        <form action="{% url 'search-results' %}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="get">
+          <input type="search" name="q" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="text-end">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'read-later-page'%}">Read Later Posts</a>
-            {% endif %}
-            <a href="{% url 'posts-page' %}">All Posts</a>
-            <a href="{% url 'categories-page' %}">All Categories</a>
-            {% if request.user.is_authenticated %}
-                <a href="{% url 'logout' %}">Logout, {{request.user}} </a>
+            <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning">Logout, {{request.user}}</button></a>
             {% else %}
-                <a href="{% url 'login' %}">Sign in</a>
-                <a href="{% url 'register' %}">Sign up</a>
+            <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+            <a href="{% url 'register' %}"><button type="button" class="btn btn-warning">Sign-up</button></a>
             {% endif %}
-        </nav>
-    </header>
+        </div>
+      </div>
+    </div>
+</header>
 
-    {% block content %}
+{% block content %}
 
-    {% endblock %}
+{% endblock %}
 
-</body>
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2021 Company, Inc</p>
+  </footer>
+</div>
+
+
 </html>
