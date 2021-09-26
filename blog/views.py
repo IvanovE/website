@@ -5,22 +5,21 @@ from django.views.generic import ListView
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.models import User
 
 from .models import Post, UserSeenPosts, Tag
 from .forms import CommentForm, CreateUserForm
 
 
-class StartingPageView(ListView):
-    template_name = 'blog/index.html'
-    model = Post
-    ordering = ['-views']
-    context_object_name = 'posts'
+class StartingPageView(View):
+    def get(self, request):
+        popular_posts = Post.objects.order_by('-views')[:3]
+        new_posts = Post.objects.order_by('-date', '-time')[:3]
+        context = {
+            'popular_posts': popular_posts,
+            'new_posts': new_posts
+        }
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        data = queryset[:3]
-        return data
+        return render(request, 'blog/index.html', context)
 
 
 class PostsView(ListView):

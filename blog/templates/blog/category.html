@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-    All Posts
-{% endblock %}
-
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'blog/category.css' %}">
 {% endblock %}
 
 {% block content%}
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
     <div class="container">
         <h2 class="category-title">{{ tag.caption }} Posts</h2>
         {% if posts %}

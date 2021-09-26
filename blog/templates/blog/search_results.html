@@ -1,27 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-    Results
-{% endblock %}
-
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'blog/search-results.css' %}">
 {% endblock %}
 
 {% block content%}
 
-    <section id="all-posts">
-        <h2>All posts that we have found</h2>
+  <div class="album py-5">
+    <h2 class="search-title">All posts that we have found!</h2>
+    <div class="container">
         {% if posts %}
-        <ul>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for post in posts %}
                 {% include 'blog/includes/post.html' %}
             {% endfor %}
-        </ul>
+        </div>
         {% else %}
-        <p>We haven't found anything...</p>
+            <p>We haven't found anything!</p>
         {% endif %}
-    </section>
+    </div>
+  </div>
 
 {% endblock %}

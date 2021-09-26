@@ -11,3 +11,8 @@ user-select: none;
   font-size: 3.5rem;
 }
 }
+
+.all-posts-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}

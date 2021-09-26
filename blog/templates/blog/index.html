@@ -1,30 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-    My Blog
-{% endblock %}
-
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'blog/index.css' %}">
 {% endblock %}
 
 {% block content%}
     <section id="welcome">
-        <div>
+        <div class="blog-welcome">
             <img src="{% static 'blog/images/avatar.jpeg' %}">
-            <h2>EVGENY'S BLOG</h2>
+            <h2 class="ev">EVGENY'S BLOG</h2>
         </div>
-        <p>Welcome to blog!</p>
+        <p>Welcome to the blog for programmers!</p>
     </section>
 
-    <section id="latest-posts">
-        <h2>The most popular posts!</h2>
-        <ul>
-            {% for post in posts %}
-                {% include 'blog/includes/post.html' %}
-            {% endfor %}
-        </ul>
-    </section>
+
+    <h2 class="popular-title">The most popular posts!</h2>
+    <div class="container mb">
+      <div class="row">
+        {% for post in popular_posts %}
+        <div class="col-sm-4">
+            {% include 'blog/includes/post.html' %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <h2 class="new-title">New posts!</h2>
+    <div class="container">
+      <div class="row">
+        {% for post in new_posts %}
+        <div class="col-sm-4">
+            {% include 'blog/includes/post.html' %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
 
 {% endblock %}

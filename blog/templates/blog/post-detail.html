@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-{{ post.title }}
-{% endblock %}
-
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'blog/post-detail.css' %}">
 {% endblock %}
@@ -66,8 +62,8 @@
             {% for comment in all_comments %}
                 <li>
                     <h2>{{ comment.user }}</h2>
-                    <p>{{ comment.user_text|linebreaks }}</p>
-                    <p>{{ comment.date }}, {{ comment.time }}</p>
+                    <p id="text-comment">{{ comment.user_text|linebreaks }}</p>
+                    <span>{{ comment.date }}, {{ comment.time }}</span>
                 </li>
             {% endfor %}
         </ul>
@@ -92,16 +88,16 @@
 {% endif %}
 
 {% if related_posts %}
-    <div>
-        <section id="latest-posts">
-            <h2>Similar posts!</h2>
-            <ul>
-                {% for post in related_posts %}
-                    {% include 'blog/includes/post.html' %}
-                {% endfor %}
-            </ul>
-        </section>
+  <div class="album py-5">
+    <h2 class="recommended-title">Recommended posts!</h2>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for post in related_posts %}
+                {% include 'blog/includes/post.html' %}
+            {% endfor %}
+        </div>
     </div>
+  </div>
 {% endif %}
 
 {% endblock %}

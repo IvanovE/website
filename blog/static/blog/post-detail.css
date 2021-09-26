@@ -8,7 +8,7 @@ body {
   width: 90%;
   max-width: 90rem;
   border-radius: 16px;
-  background-color: #5706c0;
+  background-color: #65A5D1;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   height: 22rem;
@@ -17,7 +17,7 @@ body {
 #summary h2 {
   color: white;
   font-size: 4.5rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 1.5rem;
 }
 
 #summary article {
@@ -178,7 +178,7 @@ main {
 }
 
 #comments {
-  margin: 3rem auto 10rem auto;
+  margin: 3rem auto 1rem auto;
   width: 90%;
   max-width: 60rem;
   border-radius: 12px;
@@ -203,30 +203,18 @@ main {
 }
 
 #comments h2 {
-  color: #464646;
+  color: #65A5D1;
 }
 
-#latest-posts {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 60rem;
-  margin: -6rem auto 2rem auto;
-  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
-}
-
-#latest-posts h2 {
+.recommended-title {
   text-align: center;
+  margin-bottom: 5rem;
 }
 
-#latest-posts ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
+#comments span {
+  font-style: italic;
 }
 
-#latest-posts li {
-  flex: 1;
+#comments p {
+  font-size: 1.5em;
 }
