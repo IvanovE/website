@@ -6,7 +6,7 @@
 
   <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <link href="{% static 'blog/login.css' %}" rel="stylesheet">
+  <link href="{% static 'blog/login-register.css' %}" rel="stylesheet">
 
   </head>
 
@@ -31,7 +31,7 @@
           Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
       </div>
       {% for message in messages %}
-        <p id="messages">{{message}}</p>
+        <p id="messages">{{ message }}</p>
       {% endfor %}
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>

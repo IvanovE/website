@@ -6,7 +6,7 @@
 
   <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <link href="{% static 'blog/login.css' %}" rel="stylesheet">
+  <link href="{% static 'blog/login-register.css' %}" rel="stylesheet">
 
   </head>
 
@@ -36,11 +36,11 @@
       </div>
 
       <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-      <div>
+      <div class="mb">
           Already have an account? <a href="{% url 'login' %}" class="ml-2">Sign in</a>
       </div>
 
-      {{form.errors}}
+      {{ form.errors }}
 
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>

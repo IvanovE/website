@@ -56,3 +56,17 @@ body {
 .mb {
   margin-bottom: 15px;
 }
+
+.errorlist ul {
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist li {
+    background-color: red;
+    color: white;
+    display: block;
+    font-size: 15px;
+    margin: 0 0 1px;
+    padding: 1px 1px;
+}
