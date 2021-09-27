@@ -155,52 +155,59 @@ class SearchResultsView(View):
         return render(request, 'blog/search_results.html', context)
 
 
-def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('starting-page')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password2')
+class SignIn(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('starting-page')
+        context = {}
+        return render(request, 'blog/login.html', context)
 
-            user = authenticate(request, username=username, password=password)
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password2')
 
-            if user is not None:
-                login(request, user)
-                return redirect('starting-page')
-            else:
-                messages.info(request, 'Username OR password is incorrect')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('starting-page')
+        else:
+            messages.info(request, 'Username OR password is incorrect')
 
         context = {}
         return render(request, 'blog/login.html', context)
 
 
-def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('starting-page')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            email = request.POST.get('email')
-            password1 = request.POST.get('password1')
-            password2 = request.POST.get('password2')
-            form = CreateUserForm({
-                'username': username,
-                'email': email,
-                'password1': password1,
-                'password2': password2})
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for ' + user)
+class SignUp(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('starting-page')
+        context = {'form': CreateUserForm()}
+        return render(request, 'blog/register.html', context)
 
-                return redirect('login')
+    def post(self, request):
+        form = CreateUserForm()
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        form = CreateUserForm({
+            'username': username,
+            'email': email,
+            'password1': password1,
+            'password2': password2})
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
+
+            return redirect('login')
 
         context = {'form': form}
         return render(request, 'blog/register.html', context)
 
 
-def logoutUser(request):
-    logout(request)
-    return redirect('starting-page')
+class LogoutUser(View):
+    def get(self, request):
+        logout(request)
+        return redirect('starting-page')
