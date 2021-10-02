@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 #welcome {
   background: linear-gradient(to right top, #65A5D1, #d3d3d3);
   padding: 6rem 12%;
@@ -47,4 +51,32 @@
 
 .mb {
   margin-bottom: 5rem;
+}
+
+.footer {
+  position: static;
+}
+
+@media(max-width: 576px) {
+  .blog-welcome {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .blog-welcome img {
+    margin-bottom: 2rem;
+  }
+  #welcome h2 {
+    width: 100%;
+    font-size: 2.4rem;
+    text-align: center;
+    margin: 0;
+  }
+  #welcome p {
+    text-align: center;
+    font-size: 1rem;
+  }
+  #welcome {
+    height: calc(100vh - 172px)
+  }
 }
