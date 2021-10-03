@@ -186,7 +186,6 @@ class SignUp(View):
         return render(request, 'blog/register.html', context)
 
     def post(self, request):
-        form = CreateUserForm()
         username = request.POST.get('username')
         email = request.POST.get('email')
         password1 = request.POST.get('password1')

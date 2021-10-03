@@ -53,6 +53,8 @@ body {
   margin-bottom: 5rem;
 }
 
+.mar {}
+
 .footer {
   position: static;
 }
@@ -78,5 +80,8 @@ body {
   }
   #welcome {
     height: calc(100vh - 172px)
+  }
+  .mar {
+    margin-bottom: 1rem;
   }
 }
