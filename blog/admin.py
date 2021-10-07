@@ -5,8 +5,8 @@ from .models import Author, Tag, Post, Comment, UserSeenPosts
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_filter = ["author", "date", "tags", ]
-    list_display = ["title", "date", "author", "views", ]
+    list_filter = ["author", "date_time", "tags", ]
+    list_display = ["title", "date_time", "author", "views", ]
     prepopulated_fields = {"slug": ("title", )}
 
 
@@ -15,7 +15,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class CommentForm(admin.ModelAdmin):
-    list_display = ["user", "post", "date", ]
+    list_display = ["user", "post", "date_time", ]
     list_filter = ["user", ]
 
 

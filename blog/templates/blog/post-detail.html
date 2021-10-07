@@ -47,7 +47,7 @@
         <address>By <a href="mailto:{{ post.author.email }}" class="sum_a">{{ post.author }}</a></address>
         <div>
             Last updated on
-            <time class="sum_time">{{ post.date }}, {{ post.time }}</time>
+            <time class="sum_time">{{ post.date_time }}</time>
         </div>
     </article>
 </section>
@@ -63,7 +63,7 @@
                 <li>
                     <h2>{{ comment.user }}</h2>
                     <p id="text-comment">{{ comment.user_text|linebreaks }}</p>
-                    <span>{{ comment.date }}, {{ comment.time }}</span>
+                    <span>{{ comment.date_time }}</span>
                 </li>
             {% endfor %}
         </ul>

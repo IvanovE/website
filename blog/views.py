@@ -13,7 +13,7 @@ from .forms import CommentForm, CreateUserForm
 class StartingPageView(View):
     def get(self, request):
         popular_posts = Post.objects.order_by('-views')[:3]
-        new_posts = Post.objects.order_by('-date', '-time')[:3]
+        new_posts = Post.objects.order_by('-date_time')[:3]
         context = {
             'popular_posts': popular_posts,
             'new_posts': new_posts
@@ -25,7 +25,7 @@ class StartingPageView(View):
 class PostsView(ListView):
     template_name = 'blog/all-posts.html'
     model = Post
-    ordering = ['-time']
+    ordering = ['-date_time']
     context_object_name = 'posts'
 
 
@@ -58,7 +58,7 @@ class PostDetailView(View):
             'post_tags': post.tags.all(),
             'related_posts': related_posts,
             'comment_form': CommentForm(),
-            'all_comments': post.comments.all().order_by('-date', '-time'),
+            'all_comments': post.comments.all().order_by('-date_time'),
             'saved_for_later': self.is_stored_post(request, post.id)
         }
 
@@ -82,7 +82,7 @@ class PostDetailView(View):
             'related_posts': related_posts,
             'comment_form': comment_form,
             'user_name': request.user.username,
-            'all_comments': post.comments.all().order_by('-time'),
+            'all_comments': post.comments.all().order_by('-date_time'),
             'saved_for_later': self.is_stored_post(request, post.id)
         }
 
