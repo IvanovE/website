@@ -31,10 +31,9 @@ body {
 }
 
 .sum_article_img {
-  width: 12rem;
+  width: 20rem;
   height: 12rem;
   border-radius: 12px;
-  transform: rotateZ(5deg);
   border: 5px solid white;
   margin-bottom: 1rem;
 }
