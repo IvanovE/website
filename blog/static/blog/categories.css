@@ -2,7 +2,7 @@ body {
   height: 100%;
 }
 
-#stored-posts {
+.stored-posts {
   margin: 3rem auto 3rem auto;
   padding: 2rem;
   border-radius: 12px;
@@ -12,16 +12,16 @@ body {
   max-width: 30rem;
 }
 
-#stored-posts ul {
+.ul_tag {
   list-style: none;
   padding: 0;
 }
 
-#stored-posts li {
+.li_tag {
   margin: 1rem 0;
 }
 
-#stored-posts a {
+.a_tag {
   display: block;
   padding: 1rem;
   width: 100%;
@@ -31,7 +31,13 @@ body {
   font-weight: bold;
 }
 
-#stored-posts a:hover,
-#stored-posts a:active {
+.a_tag:hover,
+a.tag:active {
   background-color: #ccc;
+}
+
+@media(max-width: 576px) {
+.footer {
+    position: relative;
+}
 }

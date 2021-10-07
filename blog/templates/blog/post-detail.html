@@ -14,8 +14,8 @@
     </div>
 {% endif %}
 
-<section id="summary">
-    <h2>{{ post.title }}</h2>
+<section class="summary">
+    <h2 class="summary_h2">{{ post.title }}</h2>
     <div class="tags">
         {% for tag in post_tags %}
             <div class="tag">
@@ -27,11 +27,11 @@
     </div>
 
 {% if request.user.is_authenticated%}
-    <div id="read-later">
+    <div class="read-later">
         <form action="{% url 'read-later-page' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" value="{{ post.id }}" name="post_id">
-            <button>
+            <button class="rl_btn">
                 {% if saved_for_later %}
                     Remove from 'Read Later'
                 {% else %}
@@ -42,12 +42,12 @@
     </div>
 {% endif %}
 
-    <article class="post-article">
-        <img src="{{ post.image.url }}">
-        <address>By <a href="mailto:{{ post.author.email }}">{{ post.author }}</a></address>
+    <article class="sum_article">
+        <img src="{{ post.image.url }}" class="sum_article_img">
+        <address>By <a href="mailto:{{ post.author.email }}" class="sum_a">{{ post.author }}</a></address>
         <div>
             Last updated on
-            <time>{{ post.date }}, {{ post.time }}</time>
+            <time class="sum_time">{{ post.date }}, {{ post.time }}</time>
         </div>
     </article>
 </section>

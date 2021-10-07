@@ -10,12 +10,12 @@
 {% endblock %}
 
 {% block content %}
-  <section id="stored-posts">
-    <h2>All categories</h2>
-    <ul>
+  <section class="stored-posts foo">
+    <h2 class="h2_tag">All categories</h2>
+    <ul class="ul_tag">
       {% for tag in tags %}
-        <li>
-          <a href="{% url 'category-page' tag.slug %}">
+        <li class="li_tag">
+          <a href="{% url 'category-page' tag.slug %}" class="a_tag">
             {{ tag.caption }}
           </a>
         </li>
