@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_sy4moe=5&sm_ldxbow+d*og+&rmu0cq%_bqh0j4##6i%8+s$4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['worried-ryan-regulations-minimum.trycloudflare.com', 'localhost']
+ALLOWED_HOSTS = ['hash-damaged-plant-station.trycloudflare.com', 'localhost']
 
 
 # Application definition
